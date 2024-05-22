@@ -7,25 +7,42 @@ void main()async {
 	await Firebase.initializeApp(
 		options: DefaultFirebaseOptions.currentPlatform,
 		);
-  runApp(const MyApp());
+	  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget{
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter Demo',
-       home:Scaffold(
-	       appBar: AppBar(
-		      title: const Text('barra de herrmainetas'), 
-	       ), 
-	       body: const Center(
-		       child: Text('you hu te capte'),
-		       ),
-	),
+       home:Home(),
     );
   }
 }
+class  Home extends StatefulWidget{
+	const Home({
+		Key? key,
+	}) : super(key:key);
+	@override
+	State<Home> createState() => _HomeState();
 
+
+}
+/////********************************************************************8*/
+class  _HomeState extends State<Home>{
+
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+		       appBar: AppBar(
+			      title: const Text('barra de herrmainetas'), 
+		       ), 
+		       body: const Center(
+			       child: Text('wow this amazing'),
+			       )
+		);
+	}
+}
+/////********************************************************************8*/

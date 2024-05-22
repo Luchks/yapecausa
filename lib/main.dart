@@ -17,36 +17,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-       home: const MyHomePage(title: 'ok'),
+       home:Scaffold(
+	       appBar: AppBar(
+		      title: const Text('barra de herrmainetas'), 
+	       ), 
+	       body: const Center(
+		       child: Text('you hu te capte'),
+		       ),
+	),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'no te voy a felicitar',
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

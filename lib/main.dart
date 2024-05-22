@@ -1,3 +1,4 @@
+import 'package:yapecausa/services/firebase_service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -39,9 +40,19 @@ class  _HomeState extends State<Home>{
 		       appBar: AppBar(
 			      title: const Text('barra de herrmainetas'), 
 		       ), 
-		       body: const Center(
-			       child: Text('wow this amazing'),
-			       )
+		       body: FutureBuilder(
+			       future: getPeople(),
+			       builder:((context,snapshot){
+					      if(!snapshot.hasData){ return const Center(child: CircularProgressIndicator());}
+					      return ListView.builder(
+						      itemCount: snapshot.data!.length,
+						      itemBuilder: (context, index){
+								      return Text(snapshot.data![index]['name']);
+							      } ,
+						      )	; 
+				       }
+				  ) ,
+			       ),
 		);
 	}
 }

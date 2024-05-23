@@ -1,7 +1,7 @@
-import 'package:yapecausa/services/firebase_service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:yapecausa/pages/home_page.dart';
 
 void main()async {
 	WidgetsFlutterBinding.ensureInitialized();
@@ -22,38 +22,3 @@ class MyApp extends StatelessWidget{
     );
   }
 }
-class  Home extends StatefulWidget{
-	const Home({
-		Key? key,
-	}) : super(key:key);
-	@override
-	State<Home> createState() => _HomeState();
-
-
-}
-/////********************************************************************8*/
-class  _HomeState extends State<Home>{
-
-	@override
-	Widget build(BuildContext context){
-		return Scaffold(
-		       appBar: AppBar(
-			      title: const Text('barra de herrmainetas'), 
-		       ), 
-		       body: FutureBuilder(
-			       future: getPeople(),
-			       builder:((context,snapshot){
-					      if(!snapshot.hasData){ return const Center(child: CircularProgressIndicator());}
-					      return ListView.builder(
-						      itemCount: snapshot.data!.length,
-						      itemBuilder: (context, index){
-								      return Text(snapshot.data![index]['name']);
-							      } ,
-						      )	; 
-				       }
-				  ) ,
-			       ),
-		);
-	}
-}
-/////********************************************************************8*/

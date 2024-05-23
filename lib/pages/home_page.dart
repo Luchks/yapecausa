@@ -3,38 +3,43 @@ import 'package:flutter/material.dart';
 
 ///$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$444
 
-class  Home extends StatefulWidget{
-	const Home({
-		Key? key,
-	}) : super(key:key);
-	@override
-	State<Home> createState() => _HomeState();
-
-
+class Home extends StatefulWidget {
+  const Home({
+    Key? key,
+  }) : super(key: key);
+  @override
+  State<Home> createState() => _HomeState();
 }
-/////********************************************************************8*/
-class  _HomeState extends State<Home>{
 
-	@override
-	Widget build(BuildContext context){
-		return Scaffold(
-		       appBar: AppBar(
-			      title: const Text('barra de herrmainetas'), 
-		       ), 
-		       body: FutureBuilder(
-			       future: getPeople(),
-			       builder:((context,snapshot){
-					      if(!snapshot.hasData){ return const Center(child: CircularProgressIndicator());}
-					      return ListView.builder(
-						      itemCount: snapshot.data!.length,
-						      itemBuilder: (context, index){
-								      return Text(snapshot.data![index]['name']);
-							      } ,
-						      )	; 
-				       }
-				  ) ,
-			       ),
-		);
-	}
+/////********************************************************************8*/
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('barra de herrmainetas'),
+      ),
+      body: FutureBuilder(
+        future: getPeople(),
+        builder: ((context, snapshot) {
+          if (!snapshot.hasData) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return ListView.builder(
+            itemCount: snapshot.data!.length,
+            itemBuilder: (context, index) {
+              return Text(snapshot.data![index]['name']);
+            },
+          );
+        }),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/add');
+        },
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
 }
 /////********************************************************************8*/

@@ -11,6 +11,7 @@ Future<List> getPeople() async{
 		final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
 		final person = {
 			'name': data['name'],
+			'uid': doc.id
 		};
 		people.add(person);
 	};

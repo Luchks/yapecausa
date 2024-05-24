@@ -11,12 +11,14 @@ class EditNamePage extends StatefulWidget {
 
 class _EditNamePageState extends State<EditNamePage> {
 	TextEditingController nameController = TextEditingController(text:'');
-
+//edition of name by id
   @override
   Widget build(BuildContext context) {
+	  final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
+	  nameController.text = arguments['name'];
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Name'),
+        title: const Text('Edit Name'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -25,15 +27,15 @@ class _EditNamePageState extends State<EditNamePage> {
             TextField(
 		controller: nameController,
               decoration: const InputDecoration(
-                hintText: 'Enter Name',
+                hintText: 'Edit name please',
               ),
             ),
             ElevatedButton( onPressed: () async{
-		    await addPeople(nameController.text).then((_){
+		    await updatePeople(arguments['uid'],nameController.text).then((_){
 			Navigator.pop(context);
 		    });
 	    }, 
-		    child: const Text('Save'))
+		    child: const Text('Update'))
           ],
         ),
       ),

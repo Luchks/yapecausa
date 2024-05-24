@@ -7,12 +7,20 @@ Future<List> getPeople() async{
 	//trae todo, asi que aqui se debe hacer un exception.
 	CollectionReference collectionReferencePeople = db.collection('people');
 	QuerySnapshot queryPeople = await collectionReferencePeople.get();
-	queryPeople.docs.forEach((document){
-		people.add(document.data());
-	});
+	for(var doc in queryPeople.docs){
+		final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+		final person = {
+			'name': data['name'],
+		};
+		people.add(person);
+	};
 	return people;
 }
 
 Future<void> addPeople(String name) async{
 	await db.collection('people').add({'name':name});
+}
+
+Future<void> updatePeople(String uid, String name) async{
+	await db.collection('people').doc(uid).update({'name':name});
 }

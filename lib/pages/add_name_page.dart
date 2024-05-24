@@ -28,8 +28,8 @@ class _AddNamePageState extends State<AddNamePage> {
                 hintText: 'Enter Name',
               ),
             ),
-            ElevatedButton( onPressed: () {
-		    print(nameController.text);
+            ElevatedButton( onPressed: () async{
+		    await addPeople(nameController.text);
 	    }, 
 		    child: const Text('Save'))
           ],

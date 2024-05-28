@@ -11,6 +11,7 @@ class AddNamePage extends StatefulWidget {
 
 class _AddNamePageState extends State<AddNamePage> {
 	TextEditingController nameController = TextEditingController(text:'');
+	TextEditingController edgeController = TextEditingController(text:'');
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class _AddNamePageState extends State<AddNamePage> {
         title: const Text('Add Name'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(18.0),
         child: Column(
           children: [
             TextField(
@@ -28,8 +29,14 @@ class _AddNamePageState extends State<AddNamePage> {
                 hintText: 'Enter Name',
               ),
             ),
+            TextField(
+		controller: edgeController,
+		decoration: const InputDecoration(
+                hintText: 'Enter Edge',
+              ),
+            ),
             ElevatedButton( onPressed: () async{
-		    await addPeople(nameController.text).then((_){
+		    await addPeople(nameController.text,edgeController.text).then((_){
 			Navigator.pop(context);
 		    });
 	    }, 

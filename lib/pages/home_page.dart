@@ -64,13 +64,14 @@ class _HomeState extends State<Home> {
                 direction: DismissDirection.endToStart,
                 key: Key(snapshot.data![index]['uid']),
                 child: ListTile(
-                  onLongPress: () =>
-		  print("Erraiser"), // here I'm going to delete
-                  title: Text(snapshot.data![index]['name']+snapshot.data![index]['edge']),
+                  title: Text(snapshot.data![index]['name']), 
+                  subtitle: Text(snapshot.data![index]['edge']),
+                  trailing: Text(snapshot.data![index]['mount']),
                   onTap: (() async {
                     await Navigator.pushNamed(context, '/edit', arguments: {
                       'name': snapshot.data![index]['name'],
                       'edge': snapshot.data![index]['edge'],
+                      'mount': snapshot.data![index]['mount'],
                       'uid': snapshot.data![index]['uid'],
                     }).then((_) {
                       setState(() {});

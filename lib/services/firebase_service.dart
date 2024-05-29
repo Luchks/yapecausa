@@ -12,6 +12,7 @@ Future<List> getPeople() async{
 		final person = {
 			'name': data['name'],
 			'edge': data['edge'],
+			'mount': data['mount'],
 			'uid': doc.id
 		};
 		people.add(person);
@@ -19,12 +20,12 @@ Future<List> getPeople() async{
 	return people;
 }
 
-Future<void> addPeople(String name,String edge) async{
-	await db.collection('people').add({'name':name,'edge':edge});
+Future<void> addPeople(String name,String edge, String mount) async{
+	await db.collection('people').add({'name':name,'edge':edge, 'mount': mount});
 }
 
-Future<void> updatePeople(String uid, String name,String edge) async{
-	await db.collection('people').doc(uid).update({'name':name,'edge':edge});
+Future<void> updatePeople(String uid, String name,String edge,String mount) async{
+	await db.collection('people').doc(uid).update({'name':name,'edge':edge,'mount':mount});
 }
 
 Future<void> deletePeople(String uid) async{
